@@ -77,6 +77,9 @@ fetch("https://fakestoreapi.com/products", {
   method: "GET",
 })
   .then(function (responseUser) {
+    if (!responseUser.ok) {
+      throw "server error";
+    }
     return responseUser.json();
   })
   .then(function (responseData) {
@@ -92,9 +95,17 @@ fetch("https://fakestoreapi.com/products", {
     });
   })
   .catch(function (error) {
+    if (error === 404) {
+      let pDescr = document.createElement("p");
+      pDescr.textContent = "Server Error";
+      document.querySelector(".itemOne").appendChild(pDescr);
+    }
     console.log(error);
   });
 
 const ARROWLEFT = document.getElementById("ARROW_LEFT");
 const ARROWRIGHT = document.getElementById("ARROW_RIGHT");
 const MAINCONTENT = document.getElementById("SLIDER_CONTENT");
+
+ARROWLEFT.addEventListener("click", function () {});
+
