@@ -200,3 +200,42 @@
 .ole:hover::after {
   transform: scaleX(1);
 }
+.itemOne {
+  flex-direction: column;
+  padding-left: 40px;
+}
+.main-wraper.active {
+  width: 200px;
+  height: 200px;
+  background-color: red;
+}
+.main-wraper {
+  position: relative;
+}
+.ARROW {
+  position: absolute;
+  width: 36px;
+  height: 48px;
+  background-color: #A2A6B0;
+  border: none;
+  cursor: pointer;
+}
+.LEFT {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  border-top-left-radius: 0%;
+  border-bottom-left-radius: 0%;
+}
+.RIGHT {
+  top: 50%;
+  right: 10%;
+  transform: translate(-10%, -50%);
+  border-radius: 50%;
+  border-top-right-radius: 0%;
+  border-bottom-right-radius: 0%;
+}
+.tetri {
+  color: white;
+}

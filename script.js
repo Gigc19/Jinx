@@ -80,12 +80,21 @@ fetch("https://fakestoreapi.com/products", {
     return responseUser.json();
   })
   .then(function (responseData) {
-    responseData.forEach((item) => {
-      let img = document.createElement("img");
-      img.src = item.image;
-      document.getElementById("photos").appendChild(img);
+    const items = document.querySelectorAll("#Item");
+    responseData.forEach((item, index) => {
+      if (index < items.length) {
+        let img = document.createElement("img");
+        img.src = item.image;
+        img.style.width = "150px";
+        img.style.height = "150px";
+        items[index].appendChild(img);
+      }
     });
   })
   .catch(function (error) {
     console.log(error);
   });
+
+const ARROWLEFT = document.getElementById("ARROW_LEFT");
+const ARROWRIGHT = document.getElementById("ARROW_RIGHT");
+const MAINCONTENT = document.getElementById("SLIDER_CONTENT");
