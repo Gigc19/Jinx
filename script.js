@@ -13,15 +13,15 @@ const dataArray = [
   },
   {
     id: 2,
-    imgUrl: "IMG/image26.png",
+    imgUrl: "IMG/c1.webp",
   },
   {
     id: 3,
-    imgUrl: "IMG/image26.png",
+    imgUrl: "IMG/arrrr.webp",
   },
   {
     id: 4,
-    imgUrl: "IMG/image26.png",
+    imgUrl: "IMG/arra1.png                                           ",
   },
 ];
 
@@ -36,6 +36,9 @@ function divtag() {
 function imgTag(item) {
   const tagEl = document.createElement("img");
   tagEl.src = item.imgUrl;
+  tagEl.style.width = "1300px";
+  tagEl.style.height = "300px";
+  tagEl.style.objectFit = "cover";
   return tagEl;
 }
 let sliderIndex = 0;
@@ -70,8 +73,19 @@ function arrowRightClick() {
 arrowLeft.addEventListener("click", arrowLeftClick);
 arrowRight.addEventListener("click", arrowRightClick);
 
-setInterval(() => {
-  arrowRightClick();
-}, 4000);
-var splide = new Splide(".splide");
-splide.mount();
+fetch("https://fakestoreapi.com/products", {
+  method: "GET",
+})
+  .then(function (responseUser) {
+    return responseUser.json();
+  })
+  .then(function (responseData) {
+    responseData.forEach((item) => {
+      let img = document.createElement("img");
+      img.src = item.image;
+      document.getElementById("photos").appendChild(img);
+    });
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
