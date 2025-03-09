@@ -109,3 +109,54 @@ const MAINCONTENT = document.getElementById("SLIDER_CONTENT");
 
 ARROWLEFT.addEventListener("click", function () {});
 
+const FormEl = document.getElementById("formElement");
+
+FormEl.addEventListener("submit", function (e) {
+  e.preventDefault();
+  let errors = {};
+  const UserNameValue = document.getElementById("inputia").value;
+  if (UserNameValue === "") {
+    errors.username = "Username Field cannot be emptty";
+  }
+  const Checkbox = document.getElementById("agreeCheck").checked;
+  if (!Checkbox) {
+    errors.check = "you must agrre our terms and conditionsss";
+  }
+  console.log(errors);
+
+  this.querySelectorAll(".error-text").forEach((el) => {
+    el.textContent = " ";
+  });
+  for (let item in errors) {
+    console.log(item);
+    let pErrorEl = document.getElementById("error-" + item);
+    if (pErrorEl) {
+      pErrorEl.textContent = errors[item];
+    }
+  }
+  if (Object.keys(errors).length === 0) {
+    this.submit();
+  }
+});
+
+let emailEl = document.getElementById("email");
+
+function emailValidation() {
+  const emailValue = document.getElementById("email").value;
+  const errorEmail = document.getElementById("text-email");
+  let emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+  if (emailValue.match(emailPattern)) {
+    errorEmail.textContent = "your email is valid";
+    errorEmail.style.color = "green";
+  } else {
+    errorEmail.textContent = "your email is Invalid";
+    errorEmail.style.color = "red";
+  }
+
+  if (emailValue === "") {
+    errorEmail.innerHTML = "";
+  }
+}
+emailEl.addEventListener("keydown", emailValidation);
+
